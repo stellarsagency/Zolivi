@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Product — ZOLIVI</title>
+<meta name="description" content="ZOLIVI — clinical luxury skincare & body mists. Dermatologically tested, paraben-free, cruelty-free." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232b2b2b'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-size='34' fill='%23d4c5b8' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+/* =========================================================
+   ZOLIVI — Clinical Luxury Skincare
+   Design system (product page) — embedded
+   Layout rule: images and text NEVER overlap.
+   ========================================================= */
+
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#faf7f2; --cream:#f4efe7; --beige:#e9e2d6; --charcoal:#2b2b2b;
+  --taupe:#7a6e66; --gold:#b8a69b; --gold-light:#d4c5b8; --white:#ffffff;
+  --line:rgba(43,43,43,.08); --radius:20px;
+  --shadow-sm:0 8px 24px rgba(43,43,43,.06);
+  --shadow-md:0 24px 50px rgba(43,43,43,.12);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---------- Reset ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--charcoal);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--gold-light);color:var(--charcoal)}
+.container{width:min(1200px,92%);margin-inline:auto}
+.section{padding:100px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:11px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--gold)}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+/* ---------- Announcement bar ---------- */
+.topbar{background:var(--charcoal);color:var(--beige);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:9px 16px}
+.topbar strong{color:var(--gold-light);font-weight:600}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(250,247,242,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:box-shadow .3s ease}
+.site-header.scrolled{box-shadow:var(--shadow-sm)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand strong{font-size:21px;letter-spacing:.34em;font-weight:700}
+.brand span{font-size:8.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:5px;font-weight:600}
+.nav-links{display:flex;gap:36px}
+.nav-links a{position:relative;font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);padding:8px 0;transition:color .25s ease}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:2px;height:1.5px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-links a.active{color:var(--charcoal)}
+.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-icons{display:flex;align-items:center;gap:6px}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:15px;color:var(--charcoal);transition:background .25s ease,color .25s ease,transform .25s ease}
+.icon-btn:hover{background:var(--cream);color:var(--gold);transform:scale(1.08)}
+.cart-wrap{position:relative}
+.cart-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:1.5px solid var(--bg)}
+.nav-toggle{display:none;font-size:20px}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--bg);padding:110px 32px 40px;flex-direction:column;gap:6px;opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.mobile-menu.open{display:flex;opacity:1;transform:none;pointer-events:auto}
+.mobile-menu a{font-size:15px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:15px 0;border-bottom:1px solid var(--beige);display:flex;justify-content:space-between;align-items:center}
+.mobile-menu a i{color:var(--gold);font-size:12px}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;transition:background .25s ease,color .25s ease,transform .25s ease,box-shadow .25s ease}
+.btn-dark{background:var(--charcoal);color:var(--bg)}
+.btn-dark:hover{background:var(--gold);color:var(--charcoal);transform:translateY(-2px);box-shadow:0 14px 28px rgba(184,166,155,.4)}
+.btn-outline{background:transparent;color:var(--charcoal);border:1px solid rgba(43,43,43,.25)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--charcoal)}
+.btn-gold:hover{background:var(--charcoal);color:var(--bg);transform:translateY(-2px);box-shadow:0 14px 28px rgba(43,43,43,.25)}
+.btn-block{width:100%;justify-content:center}
+
+/* ---------- Breadcrumb ---------- */
+.breadcrumb{display:flex;align-items:center;gap:10px;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);margin-bottom:36px;flex-wrap:wrap}
+.breadcrumb a{transition:color .25s ease}
+.breadcrumb a:hover{color:var(--gold)}
+.breadcrumb i{font-size:10px;color:var(--gold)}
+
+/* ---------- Product layout: image LEFT, details RIGHT (no overlap) ---------- */
+.prod-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
+.prod-img-panel{
+  position:sticky;top:110px;
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:1.6rem;box-shadow:var(--shadow-sm);
+}
+.prod-img-wrap{height:460px;display:grid;place-items:center;overflow:hidden;border-radius:14px}
+.prod-img-wrap img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 24px 28px rgba(43,43,43,.16));transition:opacity .25s ease,transform .3s var(--ease)}
+.prod-img-wrap img:hover{transform:scale(1.02)}
+.thumb-row{display:flex;gap:12px;margin-top:16px}
+.thumb{
+  width:74px;height:74px;border-radius:12px;overflow:hidden;cursor:pointer;
+  border:2px solid var(--line);background:var(--bg);padding:6px;
+  transition:border-color .25s ease,transform .25s ease;
+}
+.thumb:hover{transform:translateY(-2px)}
+.thumb.active{border-color:var(--gold)}
+.thumb img{width:100%;height:100%;object-fit:contain}
+
+.prod-details{padding:0.6rem 0.5rem}
+.prod-cat{font-size:10.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.prod-details h1{font-weight:400;font-size:clamp(1.9rem,3.6vw,2.6rem);letter-spacing:-.01em;line-height:1.1;margin-bottom:10px}
+.prod-sub{font-size:12.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-bottom:18px}
+.prod-price{font-size:1.7rem;font-weight:600;margin-bottom:6px}
+.prod-size{font-size:12px;letter-spacing:.14em;color:var(--taupe);margin-bottom:20px}
+.prod-size i{color:var(--gold);margin-right:7px}
+.prod-desc{font-size:0.95rem;color:var(--taupe);font-weight:300;margin-bottom:24px;max-width:520px}
+
+/* Notes (mists) */
+.notes-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.note-row{display:flex;gap:14px;align-items:baseline}
+.note-row .label{font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);min-width:52px}
+.note-row p{font-size:13px;color:var(--taupe)}
+
+/* Features (serums / sunscreen) */
+.features{margin-bottom:24px;display:flex;flex-direction:column;gap:9px}
+.features li{font-size:13px;color:var(--taupe);padding-left:20px;position:relative}
+.features li::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;position:absolute;left:0;top:1px;font-size:12px;color:var(--gold)}
+
+/* Badges */
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px}
+.badge{font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--charcoal);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.badge i{color:var(--gold);margin-right:5px;font-size:9px}
+
+/* Qty + Add to cart */
+.buy-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--white);overflow:hidden}
+.qty button{width:44px;height:48px;display:grid;place-items:center;font-size:13px;color:var(--taupe);transition:background .25s ease,color .25s ease}
+.qty button:hover{background:var(--cream);color:var(--charcoal)}
+.qty span{min-width:38px;text-align:center;font-size:14px;font-weight:600}
+.buy-row .btn{flex:1;justify-content:center}
+
+.trust-line{display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+.trust-line span{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--taupe)}
+.trust-line i{color:var(--gold)}
+.back-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);transition:color .25s ease}
+.back-link:hover{color:var(--gold)}
+
+/* ---------- Related products ---------- */
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.product-card{
+  display:flex;flex-direction:column;
+  background:var(--white);border-radius:20px;padding:1.5rem;
+  box-shadow:var(--shadow-sm);border:1px solid var(--line);
+  transition:transform .25s ease,box-shadow .25s ease;
+}
+.product-card:hover{transform:scale(1.02);box-shadow:var(--shadow-md)}
+.prod-link{display:block;border-radius:12px;overflow:hidden}
+.prod-link img{width:100%;height:230px;object-fit:contain;padding:0.6rem;transition:transform .3s var(--ease)}
+.product-card:hover .prod-link img{transform:scale(1.04)}
+.product-card .info{padding:.5rem 0;display:flex;flex-direction:column;flex:1}
+.product-card .info h3{font-size:1.05rem;font-weight:600;letter-spacing:.02em;margin-bottom:4px}
+.product-card .info h3 a{transition:color .25s ease}
+.product-card .info h3 a:hover{color:var(--gold)}
+.product-card .info .cat{font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.product-card .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--line)}
+.product-card .price{font-size:1rem;font-weight:600}
+
+/* ---------- Footer ---------- */
+footer{background:var(--charcoal);color:rgba(250,247,242,.7);padding:80px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:48px;padding-bottom:52px}
+.footer-brand .brand strong{color:var(--bg)}
+.footer-brand p{font-size:13px;font-weight:300;margin:20px 0 24px;max-width:300px;line-height:1.8;color:rgba(250,247,242,.55)}
+.footer-col h5{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-light);margin-bottom:20px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{font-size:13px;font-weight:300;color:rgba(250,247,242,.6);position:relative;transition:color .25s ease,padding-left .25s ease}
+.footer-col a::before{content:"—";color:var(--gold);opacity:0;margin-right:6px;transition:opacity .25s ease}
+.footer-col a:hover{color:var(--bg);padding-left:8px}
+.footer-col a:hover::before{opacity:1}
+.socials{display:flex;gap:10px}
+.social{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(250,247,242,.18);color:rgba(250,247,242,.75);font-size:14px;transition:background .25s ease,color .25s ease,transform .25s ease}
+.social:hover{background:var(--gold);color:var(--charcoal);transform:scale(1.12)}
+.footer-bottom{border-top:1px solid rgba(250,247,242,.09);padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.footer-bottom p{font-size:12px;font-weight:300;color:rgba(250,247,242,.45)}
+.footer-bottom p strong{color:var(--gold-light);font-weight:600;letter-spacing:.16em}
+.footer-bottom .links{display:flex;gap:24px}
+.footer-bottom .links a{font-size:12px;color:rgba(250,247,242,.45);transition:color .25s ease}
+.footer-bottom .links a:hover{color:var(--gold-light)}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--charcoal);color:var(--bg);font-size:12.5px;letter-spacing:.06em;padding:14px 26px;border-radius:999px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:10px;z-index:200;opacity:0;transition:transform .4s var(--ease),opacity .4s ease;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast i{color:var(--gold-light)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1024px){
+  .prod-grid{grid-template-columns:1fr;gap:40px}
+  .prod-img-panel{position:static}
+  .prod-img-wrap{height:380px}
+  .related-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-icons .icon-btn:nth-child(-n+3){display:none}
+  .nav-toggle{display:block}
+  .related-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:36px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .section{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="topbar">Complimentary shipping over $75 · <strong>Dermatologically tested</strong> · Paraben-Free</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="ZOLIVI home">
+      <strong>ZOLIVI</strong>
+      <span>Clinical Luxury</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="collection.html" class="active">Collection</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-icons">
+      <button class="icon-btn" id="searchBtn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="userBtn" aria-label="Account"><i class="fa-regular fa-user"></i></button>
+      <button class="icon-btn cart-wrap" id="cartBtn" aria-label="Shopping bag"><i class="fa-regular fa-bag-shopping"></i><span class="cart-dot"></span></button>
+      <button class="icon-btn nav-toggle" id="menuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home <i class="fa-solid fa-angle-right"></i></a>
+  <a href="collection.html">Collection <i class="fa-solid fa-angle-right"></i></a>
+  <a href="about.html">About <i class="fa-solid fa-angle-right"></i></a>
+  <a href="contact.html">Contact <i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+<main>
+
+  <!-- ============ PRODUCT (rendered by JS) ============ -->
+  <section class="section" style="padding-top:64px">
+    <div class="container">
+      <nav class="breadcrumb reveal" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <a href="collection.html">Collection</a>
+        <i class="fa-solid fa-angle-right"></i>
+        <span id="crumbName">Product</span>
+      </nav>
+
+      <div class="prod-grid" id="prodGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ RELATED (rendered by JS) ============ -->
+  <section class="section" style="padding-top:0" id="relatedSection">
+    <div class="container">
+      <div class="sec-head" style="margin-bottom:40px">
+        <span class="eyebrow">Complete the ritual</span>
+        <h2 style="font-weight:400;font-size:clamp(1.6rem,3vw,2.1rem);letter-spacing:-.01em;margin-top:14px">You may also like</h2>
+      </div>
+      <div class="related-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <strong>ZOLIVI</strong>
+          <span>Clinical Luxury</span>
+        </a>
+        <p>Clinical luxury skincare &amp; body mists — dermatologically tested, paraben-free, sulfate-free and cruelty-free. Brighten. Balance. Protect.</p>
+        <div class="socials">
+          <a class="social" href="contact.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social" href="contact.html" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a class="social" href="contact.html" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          <a class="social" href="contact.html" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="collection.html">Serums</a></li>
+          <li><a href="collection.html">Sunscreen</a></li>
+          <li><a href="collection.html">Body Mists</a></li>
+          <li><a href="collection.html">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Policies</h5>
+        <ul>
+          <li><a href="#">Return &amp; Refund</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Shipping Info</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html#ingredients">Ingredients</a></li>
+          <li><a href="about.html">Dermatological Testing</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> <strong>ZOLIVI</strong> — Clinical Luxury Skincare. All rights reserved.</p>
+      <div class="links">
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+        <a href="#">Careers</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i class="fa-solid fa-bag-shopping"></i><span id="toastMsg">Item added to bag</span></div>
+
+<script>
+/* ZOLIVI — shared behaviour */
+(function () {
+  'use strict';
+
+  var header = document.getElementById('header');
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var toast = document.getElementById('toast');
+  var toastMsg = document.getElementById('toastMsg');
+
+  window.addEventListener('scroll', function () {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('open');
+      menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+  }
+
+  var toastTimer;
+  window.showToast = function (msg) {
+    if (!toast || !toastMsg) return;
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+  };
+
+  var cartBtn = document.getElementById('cartBtn');
+  var searchBtn = document.getElementById('searchBtn');
+  var userBtn = document.getElementById('userBtn');
+  if (cartBtn) cartBtn.addEventListener('click', function () { showToast('Your bag is ready for checkout'); });
+  if (searchBtn) searchBtn.addEventListener('click', function () { showToast('Search is coming soon'); });
+  if (userBtn) userBtn.addEventListener('click', function () { showToast('Account area coming soon'); });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+
+/* =========================================================
+   Product renderer — data comes from the product labels.
+   Opens via product.html?id=product-slug
+   ========================================================= */
+(function () {
+  'use strict';
+
+  var IMG = {
+    re:  'https://i.ibb.co/ch1CwsrF/Whats-App-Image-2026-08-01-at-2-29-20-jj.jpg',
+    dv:  'https://i.ibb.co/Lz0Wtmwr/Whats-App-Image-2026-08-01-at-2-29-20-PM.jpg',
+    dv2: 'https://i.ibb.co/SDcFxhPq/Whats-App-Image-2026-08-01-at-2-29-21-ijij.jpg',
+    vb:  'https://i.ibb.co/BHpKf7jV/Whats-App-Image-2026-08-01-at-2-29-19-PM.jpg',
+    vb2: 'https://i.ibb.co/hRW8M3rb/Whats-App-Image-2026-08-01-at-2-29-21-PM.jpg',
+    mo:  'https://i.ibb.co/YB4ZBn5L/gtgtgtg.jpg',
+    mo2: 'https://i.ibb.co/TBvzJFZ8/kinki.jpg',
+    go:  'https://i.ibb.co/1fb26ZsZ/tgtgtgt.jpg'
+  };
+  var BADGES = [
+    { icon: 'fa-leaf',         label: 'Paraben-Free' },
+    { icon: 'fa-heart',        label: 'Cruelty-Free' },
+    { icon: 'fa-flask',        label: 'Dermatologically Tested' }
+  ];
+
+  var PRODUCTS = {
+    'radiance-elixir': {
+      name: 'Radiance Elixir', cat: 'Vitamin C Serum', price: '$48.00', size: '30 ml · 1.01 fl.oz',
+      img: IMG.re, gallery: [IMG.re],
+      desc: 'A clinically dosed Vitamin C serum that visibly brightens, balances and protects — for all skin types, including dullness-prone and oily skin.',
+      features: [
+        '15% Vitamin C — visibly brightens & evens skin tone',
+        '10% Niacinamide — refines texture & balances oil',
+        'Ferulic Acid + Vitamin E — amplified antioxidant protection',
+        'Hyaluronic Acid + Zinc PCA — hydration & pore support',
+        'Suitable for all skin types'
+      ]
+    },
+    'daily-veil': {
+      name: 'Daily Veil', cat: 'Sunscreen', price: '$32.00', size: '50 ml · 1.69 fl.oz',
+      img: IMG.dv, gallery: [IMG.dv, IMG.dv2],
+      desc: 'Weightless, non-greasy daily sun protection with SPF 50+ and PA++++ broad-spectrum coverage — your invisible shield for every day.',
+      features: [
+        'SPF 50+ · PA++++ · broad spectrum',
+        'UVA / UVB protection',
+        'Weightless formula — invisible finish',
+        'Non-greasy, wears beautifully under makeup',
+        'Suitable for all skin types'
+      ]
+    },
+    'golden-oasis': {
+      name: 'Golden Oasis', cat: 'Body Mist', price: '$28.00', size: '100 ml · 3.38 fl.oz',
+      img: IMG.go, gallery: [IMG.go],
+      desc: 'A sunlit floral journey — juicy peach, lychee and orange blossom opening into white florals, settling into warm musk, amber and vanilla.',
+      notes: [
+        { label: 'Top',   text: 'Peach, Lychee, Orange Blossom' },
+        { label: 'Heart', text: 'Magnolia, Gardenia, White Flowers' },
+        { label: 'Base',  text: 'Musk, Amber, Vanilla' }
+      ]
+    },
+    'midnight-oud': {
+      name: 'Midnight Oud', cat: 'Body Mist', price: '$28.00', size: '100 ml · 3.38 fl.oz',
+      img: IMG.mo, gallery: [IMG.mo, IMG.mo2],
+      desc: 'A dramatic, amber-laced oud composition — saffron and bergamot meet rose and jasmine sambac over a deep base of oud, patchouli and vanilla.',
+      notes: [
+        { label: 'Top',   text: 'Saffron, Bergamot' },
+        { label: 'Heart', text: 'Rose, Jasmine Sambac' },
+        { label: 'Base',  text: 'Oud, Amber, Patchouli, Vanilla' }
+      ]
+    },
+    'velvet-bloom': {
+      name: 'Velvet Bloom', cat: 'Body Mist', price: '$28.00', size: '100 ml · 3.38 fl.oz',
+      img: IMG.vb, gallery: [IMG.vb, IMG.vb2],
+      desc: 'A romantic floral bouquet — sparkling bergamot, pear and mandarin over Turkish rose, jasmine and peony, resting on white musk, vanilla and sandalwood.',
+      notes: [
+        { label: 'Top',   text: 'Bergamot, Pear, Mandarin' },
+        { label: 'Heart', text: 'Turkish Rose, Jasmine, Peony' },
+        { label: 'Base',  text: 'White Musk, Vanilla, Sandalwood' }
+      ]
+    }
+  };
+
+  function badgesHtml() {
+    var html = '';
+    BADGES.forEach(function (b) {
+      html += '<span class="badge"><i class="fa-solid ' + b.icon + '"></i>' + b.label + '</span>';
+    });
+    return html;
+  }
+
+  function detailBlocks(p) {
+    var html = '';
+    if (p.notes) {
+      html += '<div class="notes-list">';
+      p.notes.forEach(function (n) {
+        html += '<div class="note-row"><span class="label">' + n.label + '</span><p>' + n.text + '</p></div>';
+      });
+      html += '</div>';
+    }
+    if (p.features) {
+      html += '<ul class="features">';
+      p.features.forEach(function (f) {
+        html += '<li>' + f + '</li>';
+      });
+      html += '</ul>';
+    }
+    return html;
+  }
+
+  function thumbsHtml(p, productId) {
+    if (!p.gallery || p.gallery.length < 2) return '';
+    var html = '<div class="thumb-row">';
+    p.gallery.forEach(function (src, i) {
+      html += '<button class="thumb' + (i === 0 ? ' active' : '') + '" data-src="' + src + '" aria-label="Product view ' + (i + 1) + '">' +
+              '<img src="' + src + '" alt="' + p.name + ' view ' + (i + 1) + '" />' +
+              '</button>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function render(p, productId) {
+    document.title = p.name + ' — ZOLIVI';
+    document.getElementById('crumbName').textContent = p.name;
+
+    document.getElementById('prodGrid').innerHTML =
+      '<div class="prod-img-panel reveal">' +
+        '<div class="prod-img-wrap"><img id="mainImg" src="' + p.img + '" alt="' + p.name + '" /></div>' +
+        thumbsHtml(p, productId) +
+      '</div>' +
+      '<div class="prod-details reveal" style="transition-delay:.12s">' +
+        '<p class="prod-cat">' + p.cat + '</p>' +
+        '<h1>' + p.name + '</h1>' +
+        '<p class="prod-sub">ZOLIVI · Clinical Luxury</p>' +
+        '<p class="prod-price">' + p.price + '</p>' +
+        '<p class="prod-size"><i class="fa-solid fa-droplet"></i>' + p.size + '</p>' +
+        '<p class="prod-desc">' + p.desc + '</p>' +
+        detailBlocks(p) +
+        '<div class="badges">' + badgesHtml() + '</div>' +
+        '<div class="buy-row">' +
+          '<div class="qty">' +
+            '<button id="qtyMinus" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>' +
+            '<span id="qtyVal">1</span>' +
+            '<button id="qtyPlus" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>' +
+          '</div>' +
+          '<button class="btn btn-dark" id="addBtn"><i class="fa-solid fa-bag-shopping"></i>Add to Cart</button>' +
+        '</div>' +
+        '<div class="trust-line">' +
+          '<span><i class="fa-solid fa-truck"></i>Free shipping over $75</span>' +
+          '<span><i class="fa-solid fa-rotate-left"></i>Easy returns</span>' +
+          '<span><i class="fa-solid fa-shield-halved"></i>Dermatologically tested</span>' +
+        '</div>' +
+        '<a class="back-link" href="collection.html"><i class="fa-solid fa-arrow-left"></i>Back to Collection</a>' +
+      '</div>';
+
+    /* Quantity selector */
+    var qty = 1;
+    var qtyVal = document.getElementById('qtyVal');
+    document.getElementById('qtyMinus').addEventListener('click', function () {
+      qty = Math.max(1, qty - 1);
+      qtyVal.textContent = qty;
+    });
+    document.getElementById('qtyPlus').addEventListener('click', function () {
+      qty = Math.min(10, qty + 1);
+      qtyVal.textContent = qty;
+    });
+    document.getElementById('addBtn').addEventListener('click', function () {
+      showToast(p.name + ' × ' + qty + ' added to bag');
+    });
+
+    /* Gallery thumbnails */
+    document.querySelectorAll('.thumb').forEach(function (thumb) {
+      thumb.addEventListener('click', function () {
+        document.getElementById('mainImg').src = thumb.getAttribute('data-src');
+        document.querySelectorAll('.thumb').forEach(function (t) { t.classList.remove('active'); });
+        thumb.classList.add('active');
+      });
+    });
+
+    /* Related products */
+    var related = Object.keys(PRODUCTS).filter(function (id) { return id !== productId; }).slice(0, 3);
+    var relHtml = '';
+    related.forEach(function (id) {
+      var r = PRODUCTS[id];
+      relHtml +=
+        '<article class="product-card reveal">' +
+          '<a class="prod-link" href="product.html?id=' + id + '" aria-label="View ' + r.name + '">' +
+            '<img src="' + r.img + '" alt="' + r.name + '" loading="lazy" />' +
+          '</a>' +
+          '<div class="info">' +
+            '<h3><a href="product.html?id=' + id + '">' + r.name + '</a></h3>' +
+            '<p class="cat">' + r.cat + '</p>' +
+            '<div class="foot"><span class="price">' + r.price + '</span></div>' +
+          '</div>' +
+        '</article>';
+    });
+    document.getElementById('relatedGrid').innerHTML = relHtml;
+
+    document.querySelectorAll('#prodGrid .reveal, #relatedGrid .reveal').forEach(function (el, i) {
+      setTimeout(function () { el.classList.add('visible'); }, i * 80);
+    });
+  }
+
+  /* Read ?id= from URL and render */
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  var product = PRODUCTS[id];
+  if (!product) {
+    window.location.replace('collection.html');
+    return;
+  }
+  render(product, id);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ZOLIVI — Clinical Luxury Skincare</title>
+<meta name="description" content="ZOLIVI — clinical luxury skincare & body mists. Dermatologically tested, paraben-free, cruelty-free." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232b2b2b'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-size='34' fill='%23d4c5b8' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+<style>
+/* =========================================================
+   ZOLIVI — Clinical Luxury Skincare
+   Embedded design system (homepage)
+   ========================================================= */
+
+:root{
+  --bg:#faf7f2; --cream:#f4efe7; --beige:#e9e2d6; --charcoal:#2b2b2b;
+  --taupe:#7a6e66; --gold:#b8a69b; --gold-light:#d4c5b8; --white:#ffffff;
+  --line:rgba(43,43,43,.08); --radius:22px;
+  --shadow-sm:0 10px 30px rgba(43,43,43,.08);
+  --shadow-md:0 24px 60px rgba(43,43,43,.14);
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--charcoal);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:var(--gold-light);color:var(--charcoal)}
+.container{width:min(1200px,92%);margin-inline:auto}
+.section{padding:110px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:36px;height:1px;background:var(--gold)}
+.sec-head{max-width:620px;margin-bottom:56px}
+.sec-head h2{font-weight:400;font-size:clamp(32px,3.8vw,46px);line-height:1.15;letter-spacing:-.01em;color:var(--charcoal);margin:20px 0 16px}
+.sec-head p{color:var(--taupe);font-weight:300;font-size:15.5px}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .eyebrow::before{display:none}
+.sec-head.center .eyebrow::after{content:"";width:36px;height:1px;background:var(--gold)}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+/* Announcement bar */
+.topbar{background:var(--charcoal);color:var(--beige);font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:9px 16px}
+.topbar strong{color:var(--gold-light);font-weight:600}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:100;background:rgba(250,247,242,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--line);transition:box-shadow .3s ease,background .3s ease}
+.site-header.scrolled{background:rgba(250,247,242,.96);box-shadow:var(--shadow-sm)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.brand{display:flex;flex-direction:column;line-height:1}
+.brand strong{font-size:21px;letter-spacing:.34em;font-weight:700;color:var(--charcoal)}
+.brand span{font-size:8.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-top:5px;font-weight:600}
+.nav-links{display:flex;gap:36px}
+.nav-links a{position:relative;font-size:12.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);padding:8px 0;transition:color .25s ease}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:2px;height:1.5px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .3s var(--ease)}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-links a.active{color:var(--charcoal)}
+.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-icons{display:flex;align-items:center;gap:6px}
+.icon-btn{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:15px;color:var(--charcoal);transition:background .25s ease,color .25s ease,transform .25s ease}
+.icon-btn:hover{background:var(--cream);color:var(--gold);transform:scale(1.08)}
+.cart-wrap{position:relative}
+.cart-dot{position:absolute;top:6px;right:6px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:1.5px solid var(--bg)}
+.nav-toggle{display:none;font-size:20px}
+.mobile-menu{display:none;position:fixed;inset:0;z-index:99;background:var(--bg);padding:112px 32px 40px;flex-direction:column;gap:6px;opacity:0;transform:translateY(-12px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+.mobile-menu.open{display:flex;opacity:1;transform:none;pointer-events:auto}
+.mobile-menu a{font-size:15px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;padding:15px 0;border-bottom:1px solid var(--beige);color:var(--charcoal);display:flex;justify-content:space-between;align-items:center}
+.mobile-menu a i{color:var(--gold);font-size:12px}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 34px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;transition:transform .25s var(--ease),box-shadow .25s ease,background .25s ease,color .25s ease}
+.btn-dark{background:var(--charcoal);color:var(--bg)}
+.btn-dark:hover{background:var(--gold);color:var(--charcoal);transform:translateY(-2px);box-shadow:0 14px 30px rgba(184,166,155,.45)}
+.btn-outline{background:transparent;color:var(--charcoal);border:1px solid rgba(43,43,43,.25)}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:var(--charcoal)}
+.btn-gold:hover{background:var(--charcoal);color:var(--bg);transform:translateY(-2px);box-shadow:0 14px 30px rgba(43,43,43,.25)}
+.btn-sm{padding:11px 22px;font-size:10.5px}
+
+/* Product images */
+.prod-shot{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(43,43,43,.18));transition:transform .5s var(--ease)}
+
+/* Hero */
+.home-hero{position:relative;overflow:hidden;background:radial-gradient(1100px 520px at 88% -10%, rgba(212,197,184,.35), transparent 60%),radial-gradient(900px 480px at -10% 18%, rgba(233,226,214,.6), transparent 60%),linear-gradient(180deg,var(--bg) 0%,var(--cream) 100%)}
+.home-hero::before{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent);opacity:.6}
+.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center;padding:100px 0 116px}
+.hero-copy h1{font-weight:300;font-size:clamp(42px,5vw,68px);line-height:1.08;letter-spacing:-.015em;color:var(--charcoal);margin:26px 0 26px}
+.hero-copy h1 em{font-style:italic;color:var(--gold);font-weight:400}
+.hero-copy .lead{font-size:16px;color:var(--taupe);font-weight:300;max-width:470px}
+.hero-cta{display:flex;gap:16px;margin:38px 0 34px;flex-wrap:wrap}
+.hero-trust{display:flex;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.05em;color:var(--charcoal)}
+.trust-item i{color:var(--gold);font-size:13px}
+.hero-products{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.feat-card{position:relative;border-radius:var(--radius);background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:var(--shadow-sm);padding:26px 26px 26px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s ease}
+.feat-card:hover{transform:translateY(-8px) scale(1.02);box-shadow:var(--shadow-md)}
+.feat-card::before{content:"";position:absolute;top:-40%;right:-30%;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,var(--glow),transparent 65%);opacity:.35;pointer-events:none}
+.feat-visual{position:relative;height:250px;display:grid;place-items:center;margin:20px auto 4px;max-width:290px}
+.feat-card:hover .prod-shot{transform:scale(1.045)}
+.feat-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);padding:5px 13px;border:1px solid rgba(184,166,155,.5);border-radius:999px;margin-bottom:4px}
+.feat-card h3{font-weight:600;font-size:23px;letter-spacing:.02em;color:var(--charcoal);margin-top:14px}
+.feat-card h3 a:hover{color:var(--gold)}
+.feat-card .sub{font-size:11.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);margin-top:3px}
+.feat-list{margin:16px 0 6px}
+.feat-list li{font-size:12px;color:var(--taupe);padding:4px 0 4px 18px;position:relative}
+.feat-list li::before{content:"";position:absolute;left:0;top:11px;width:7px;height:7px;border-radius:50%;background:var(--gold);opacity:.75}
+.size-line{font-size:11px;letter-spacing:.14em;color:var(--taupe);margin:10px 0 16px}
+.size-line i{color:var(--gold);margin-right:7px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.badge{font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--charcoal);background:rgba(250,247,242,.92);border:1px solid var(--line);border-radius:999px;padding:6px 12px;transition:background .25s ease,color .25s ease,transform .25s ease}
+.badge i{color:var(--gold);margin-right:5px;font-size:9px}
+.badge:hover{background:var(--charcoal);color:var(--bg);transform:translateY(-2px)}
+
+/* Mists */
+.arrivals{background:linear-gradient(180deg,var(--bg) 0%,var(--cream) 100%)}
+.grid-mists{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.mist-card{position:relative;border-radius:26px;overflow:hidden;display:block;background:var(--cream);border:1px solid rgba(255,255,255,.7);transition:transform .3s var(--ease),box-shadow .3s ease}
+.mist-card:hover{transform:translateY(-10px) scale(1.02);box-shadow:var(--shadow-md)}
+.mist-visual{position:relative;height:290px;display:grid;place-items:center;overflow:hidden;background:radial-gradient(420px 240px at 50% 8%, rgba(255,255,255,.5), transparent 62%),linear-gradient(180deg,var(--mist-a),var(--mist-b))}
+.mist-visual img{position:relative;z-index:1;width:100%;height:100%;object-fit:contain;padding:30px;filter:drop-shadow(0 24px 28px rgba(43,43,43,.18));transition:transform .5s var(--ease)}
+.mist-card:hover .mist-visual img{transform:scale(1.06)}
+.mist-info{padding:26px;border-top:1px solid rgba(255,255,255,.6)}
+.mist-brand{font-size:9.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.mist-info h3{font-weight:600;font-size:22px;letter-spacing:.02em;color:var(--charcoal);margin:8px 0 3px}
+.mist-cat{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+.notes{margin:18px 0;display:flex;flex-direction:column;gap:9px}
+.note{display:flex;gap:12px;align-items:baseline}
+.note .label{font-size:9.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);min-width:46px}
+.note p{font-size:12.5px;color:var(--taupe)}
+.mist-foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.mist-size{font-size:11px;letter-spacing:.13em;color:var(--taupe)}
+.mist-size i{color:var(--gold);margin-right:6px}
+
+/* Pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.pillar{display:flex;flex-direction:column;gap:14px;align-items:flex-start;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:var(--radius);padding:34px 30px;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s ease,border-color .3s ease}
+.pillar:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--gold-light)}
+.pillar-icon{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;background:var(--charcoal);color:var(--gold-light);font-size:19px}
+.pillar h3{font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--charcoal)}
+.pillar p{font-size:13.5px;color:var(--taupe);font-weight:300}
+
+/* CTA band */
+.cta-band{position:relative;overflow:hidden;text-align:center;background:radial-gradient(700px 300px at 50% 0%, rgba(212,197,184,.4), transparent 65%),var(--charcoal);color:var(--bg);padding:96px 24px}
+.cta-band h2{font-weight:300;font-size:clamp(30px,4vw,46px);letter-spacing:-.01em;margin-bottom:16px}
+.cta-band h2 em{font-style:italic;color:var(--gold-light)}
+.cta-band p{color:rgba(250,247,242,.65);font-weight:300;max-width:520px;margin:0 auto 34px}
+
+/* Footer */
+footer{background:var(--charcoal);color:rgba(250,247,242,.7);padding:84px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:48px;padding-bottom:56px}
+.footer-brand .brand strong{color:var(--bg)}
+.footer-brand p{font-size:13px;font-weight:300;margin:20px 0 24px;max-width:300px;line-height:1.8;color:rgba(250,247,242,.55)}
+.footer-col h5{font-size:11px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:var(--gold-light);margin-bottom:22px}
+.footer-col ul{display:flex;flex-direction:column;gap:12px}
+.footer-col a{font-size:13px;font-weight:300;color:rgba(250,247,242,.6);position:relative;transition:color .25s ease,padding-left .25s ease}
+.footer-col a::before{content:"—";color:var(--gold);opacity:0;margin-right:6px;transition:opacity .25s ease}
+.footer-col a:hover{color:var(--bg);padding-left:8px}
+.footer-col a:hover::before{opacity:1}
+.footer-bottom{border-top:1px solid rgba(250,247,242,.09);padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.footer-bottom p{font-size:12px;font-weight:300;color:rgba(250,247,242,.45)}
+.footer-bottom p strong{color:var(--gold-light);font-weight:600;letter-spacing:.16em}
+.footer-bottom .links{display:flex;gap:24px}
+.footer-bottom .links a{font-size:12px;color:rgba(250,247,242,.45);transition:color .25s ease}
+.footer-bottom .links a:hover{color:var(--gold-light)}
+
+/* Socials */
+.socials{display:flex;gap:10px}
+.social{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line);color:var(--taupe);font-size:14px;transition:background .25s ease,color .25s ease,border-color .25s ease,transform .25s ease}
+.social:hover{background:var(--gold);border-color:var(--gold);color:var(--white);transform:scale(1.12) translateY(-2px)}
+
+/* Toast */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(90px);background:var(--charcoal);color:var(--bg);font-size:12.5px;letter-spacing:.06em;padding:14px 26px;border-radius:999px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:10px;z-index:200;opacity:0;transition:transform .4s var(--ease),opacity .4s ease;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.toast i{color:var(--gold-light)}
+
+/* Responsive */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:56px;padding:80px 0 96px}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-icons .icon-btn:nth-child(-n+3){display:none}
+  .nav-toggle{display:block}
+  .hero-products,.grid-mists,.pillars{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr;gap:36px}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .section{padding:80px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="topbar">Complimentary shipping over $75 · <strong>Dermatologically tested</strong> · Paraben-Free</div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a class="brand" href="index.html" aria-label="ZOLIVI home">
+      <strong>ZOLIVI</strong>
+      <span>Clinical Luxury</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="collection.html">Collection</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-icons">
+      <button class="icon-btn" id="searchBtn" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="icon-btn" id="userBtn" aria-label="Account"><i class="fa-regular fa-user"></i></button>
+      <button class="icon-btn cart-wrap" id="cartBtn" aria-label="Shopping bag"><i class="fa-regular fa-bag-shopping"></i><span class="cart-dot"></span></button>
+      <button class="icon-btn nav-toggle" id="menuBtn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home <i class="fa-solid fa-angle-right"></i></a>
+  <a href="collection.html">Collection <i class="fa-solid fa-angle-right"></i></a>
+  <a href="about.html">About <i class="fa-solid fa-angle-right"></i></a>
+  <a href="contact.html">Contact <i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="home-hero">
+    <div class="container hero-grid">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">Clinical Luxury Skincare</span>
+        <h1>Radiance, balance &amp; protection — <em>scientifically refined.</em></h1>
+        <p class="lead">ZOLIVI pairs clinically tested actives with sensorial textures. Dermatologically tested, paraben-free and cruelty-free — luxury without compromise.</p>
+        <div class="hero-cta">
+          <a href="collection.html" class="btn btn-dark">Shop Now <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="about.html" class="btn btn-outline">Our Philosophy</a>
+        </div>
+        <div class="hero-trust">
+          <span class="trust-item"><i class="fa-solid fa-circle-check"></i> Dermatologically Tested</span>
+          <span class="trust-item"><i class="fa-solid fa-leaf"></i> Cruelty-Free</span>
+          <span class="trust-item"><i class="fa-solid fa-flask"></i> Paraben-Free</span>
+        </div>
+      </div>
+
+      <!-- Featured products (real images) -->
+      <div class="hero-products">
+        <article class="feat-card reveal" style="transition-delay:.12s;--glow:#e8cf9f">
+          <span class="feat-tag">Bestseller</span>
+          <a class="feat-visual" href="product.html?id=radiance-elixir" aria-label="View Radiance Elixir details">
+            <img class="prod-shot" src="https://i.ibb.co/ch1CwsrF/Whats-App-Image-2026-08-01-at-2-29-20-jj.jpg" alt="Radiance Elixir Vitamin C Serum" />
+          </a>
+            <h3><a href="product.html?id=radiance-elixir" style="transition:color .25s ease">Radiance Elixir</a></h3>
+          <p class="sub">Vitamin C Serum · 30 ml</p>
+          <ul class="feat-list">
+            <li>15% Vitamin C · visibly brightens &amp; evens tone</li>
+            <li>10% Niacinamide · refines &amp; balances</li>
+            <li>Ferulic Acid + Vitamin E · antioxidant shield</li>
+          </ul>
+          <a href="product.html?id=radiance-elixir" class="btn btn-dark btn-sm">Shop Now</a>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-leaf"></i>Paraben-Free</span>
+            <span class="badge"><i class="fa-solid fa-heart"></i>Cruelty-Free</span>
+            <span class="badge"><i class="fa-solid fa-flask"></i>Dermatologically Tested</span>
+          </div>
+        </article>
+
+        <article class="feat-card reveal" style="transition-delay:.24s;--glow:#d8cbc2">
+          <span class="feat-tag">Daily Essential</span>
+          <a class="feat-visual" href="product.html?id=daily-veil" aria-label="View Daily Veil details">
+            <img class="prod-shot" src="https://i.ibb.co/Lz0Wtmwr/Whats-App-Image-2026-08-01-at-2-29-20-PM.jpg" alt="Daily Veil Sunscreen SPF 50+" />
+          </a>
+          <h3><a href="product.html?id=daily-veil" style="transition:color .25s ease">Daily Veil</a></h3>
+          <p class="sub">Sunscreen · 50 ml</p>
+          <ul class="feat-list">
+            <li>SPF 50+ · PA++++ · broad spectrum</li>
+            <li>UVA / UVB protection for all skin types</li>
+            <li>Weightless, non-greasy daily texture</li>
+          </ul>
+          <a href="product.html?id=daily-veil" class="btn btn-dark btn-sm">Shop Now</a>
+          <div class="badges">
+            <span class="badge"><i class="fa-solid fa-leaf"></i>Paraben-Free</span>
+            <span class="badge"><i class="fa-solid fa-heart"></i>Cruelty-Free</span>
+            <span class="badge"><i class="fa-solid fa-flask"></i>Dermatologically Tested</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURED COLLECTION ============ -->
+  <section class="section arrivals" id="new-arrivals">
+    <div class="container">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Featured Collection</span>
+        <h2>Signature Body Mists</h2>
+        <p>Three layered compositions — a full fragrance journey of top, heart and base notes. 100 ml / 3.38 fl.oz.</p>
+      </div>
+
+      <div class="grid-mists">
+
+        <a class="mist-card reveal" style="transition-delay:.05s" href="product.html?id=golden-oasis">
+          <div class="mist-visual" style="--mist-a:#fbe3c6;--mist-b:#ebc9a2">
+            <img src="https://i.ibb.co/1fb26ZsZ/tgtgtgt.jpg" alt="Golden Oasis Body Mist" loading="lazy" />
+          </div>
+          <div class="mist-info">
+            <span class="mist-brand">ZOLIVI</span>
+            <h3>Golden Oasis</h3>
+            <p class="mist-cat">Body Mist</p>
+            <div class="notes">
+              <div class="note"><span class="label">Top</span><p>Peach, Lychee, Orange Blossom</p></div>
+              <div class="note"><span class="label">Heart</span><p>Magnolia, Gardenia, White Flowers</p></div>
+              <div class="note"><span class="label">Base</span><p>Musk, Amber, Vanilla</p></div>
+            </div>
+            <div class="mist-foot">
+              <span class="mist-size"><i class="fa-solid fa-droplet"></i>100 ml / 3.38 fl.oz</span>
+              <i class="fa-solid fa-arrow-right" style="color:var(--gold)"></i>
+            </div>
+          </div>
+        </a>
+
+        <a class="mist-card reveal" style="transition-delay:.15s" href="product.html?id=midnight-oud">
+          <div class="mist-visual" style="--mist-a:#4a3128;--mist-b:#221610">
+            <img src="https://i.ibb.co/YB4ZBn5L/gtgtgtg.jpg" alt="Midnight Oud Body Mist" loading="lazy" />
+          </div>
+          <div class="mist-info">
+            <span class="mist-brand">ZOLIVI</span>
+            <h3>Midnight Oud</h3>
+            <p class="mist-cat">Body Mist</p>
+            <div class="notes">
+              <div class="note"><span class="label">Top</span><p>Saffron, Bergamot</p></div>
+              <div class="note"><span class="label">Heart</span><p>Rose, Jasmine Sambac</p></div>
+              <div class="note"><span class="label">Base</span><p>Oud, Amber, Patchouli, Vanilla</p></div>
+            </div>
+            <div class="mist-foot">
+              <span class="mist-size"><i class="fa-solid fa-droplet"></i>100 ml / 3.38 fl.oz</span>
+              <i class="fa-solid fa-arrow-right" style="color:var(--gold)"></i>
+            </div>
+          </div>
+        </a>
+
+        <a class="mist-card reveal" style="transition-delay:.25s" href="product.html?id=velvet-bloom">
+          <div class="mist-visual" style="--mist-a:#f3d5d2;--mist-b:#e3b4b2">
+            <img src="https://i.ibb.co/BHpKf7jV/Whats-App-Image-2026-08-01-at-2-29-19-PM.jpg" alt="Velvet Bloom Body Mist" loading="lazy" />
+          </div>
+          <div class="mist-info">
+            <span class="mist-brand">ZOLIVI</span>
+            <h3>Velvet Bloom</h3>
+            <p class="mist-cat">Body Mist</p>
+            <div class="notes">
+              <div class="note"><span class="label">Top</span><p>Bergamot, Pear, Mandarin</p></div>
+              <div class="note"><span class="label">Heart</span><p>Turkish Rose, Jasmine, Peony</p></div>
+              <div class="note"><span class="label">Base</span><p>White Musk, Vanilla, Sandalwood</p></div>
+            </div>
+            <div class="mist-foot">
+              <span class="mist-size"><i class="fa-solid fa-droplet"></i>100 ml / 3.38 fl.oz</span>
+              <i class="fa-solid fa-arrow-right" style="color:var(--gold)"></i>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BRAND PROMISE ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">Why ZOLIVI</span>
+        <h2>Three pillars. Zero compromise.</h2>
+        <p>Every formula is engineered around a simple promise — brighten, balance and protect, for all skin types.</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal" style="transition-delay:.05s">
+          <span class="pillar-icon"><i class="fa-regular fa-sun"></i></span>
+          <h3>Brighten</h3>
+          <p>Clinical actives — 15% Vitamin C, Niacinamide and Ferulic Acid — visibly brighten and even skin tone while defending against environmental stress.</p>
+        </div>
+        <div class="pillar reveal" style="transition-delay:.15s">
+          <span class="pillar-icon"><i class="fa-solid fa-scale-balanced"></i></span>
+          <h3>Balance</h3>
+          <p>Hyaluronic Acid and Zinc PCA support the skin barrier, restoring equilibrium so skin feels calm, hydrated and resilient.</p>
+        </div>
+        <div class="pillar reveal" style="transition-delay:.25s">
+          <span class="pillar-icon"><i class="fa-solid fa-shield-halved"></i></span>
+          <h3>Protect</h3>
+          <p>Broad-spectrum SPF 50+ daily defense and antioxidant care shield every layer — paraben-free, sulfate-free and cruelty-free, always.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section class="cta-band reveal">
+    <div class="container">
+      <h2>Discover the full <em>collection</em>.</h2>
+      <p>Serums, sun protection and signature body mists — engineered with dermatological precision, finished with clinical luxury.</p>
+      <a href="collection.html" class="btn btn-gold">Explore the Collection <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="index.html">
+          <strong>ZOLIVI</strong>
+          <span>Clinical Luxury</span>
+        </a>
+        <p>Clinical luxury skincare &amp; body mists — dermatologically tested, paraben-free, sulfate-free and cruelty-free. Brighten. Balance. Protect.</p>
+        <div class="socials">
+          <a class="social" href="contact.html" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a class="social" href="contact.html" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a class="social" href="contact.html" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          <a class="social" href="contact.html" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="collection.html">Serums</a></li>
+          <li><a href="collection.html">Sunscreen</a></li>
+          <li><a href="collection.html">Body Mists</a></li>
+          <li><a href="collection.html">Gift Sets</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Policies</h5>
+        <ul>
+          <li><a href="#">Return &amp; Refund</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Shipping Info</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>About</h5>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html#ingredients">Ingredients</a></li>
+          <li><a href="about.html">Dermatological Testing</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year">2026</span> <strong>ZOLIVI</strong> — Clinical Luxury Skincare. All rights reserved.</p>
+      <div class="links">
+        <a href="#">Accessibility</a>
+        <a href="#">Sitemap</a>
+        <a href="#">Careers</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast"><i class="fa-solid fa-bag-shopping"></i><span id="toastMsg">Item added to bag</span></div>
+
+<script>
+/* ZOLIVI — shared page behaviour */
+(function () {
+  'use strict';
+
+  var header = document.getElementById('header');
+  var menuBtn = document.getElementById('menuBtn');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var toast = document.getElementById('toast');
+  var toastMsg = document.getElementById('toastMsg');
+
+  window.addEventListener('scroll', function () {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('open');
+      menuBtn.innerHTML = open ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+    });
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+  }
+
+  var toastTimer;
+  window.showToast = function (msg) {
+    if (!toast || !toastMsg) return;
+    toastMsg.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2600);
+  };
+
+  var cartBtn = document.getElementById('cartBtn');
+  var searchBtn = document.getElementById('searchBtn');
+  var userBtn = document.getElementById('userBtn');
+  if (cartBtn) cartBtn.addEventListener('click', function () { showToast('Your bag is ready for checkout'); });
+  if (searchBtn) searchBtn.addEventListener('click', function () { showToast('Search is coming soon'); });
+  if (userBtn) userBtn.addEventListener('click', function () { showToast('Account area coming soon'); });
+
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); io.unobserve(entry.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
