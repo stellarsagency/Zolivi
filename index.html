@@ -125,16 +125,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 /* Bestsellers */
 #bestsellers{position:relative;background:radial-gradient(900px 420px at 50% -4%,rgba(212,197,184,.32),transparent 62%),linear-gradient(180deg,var(--cream) 0%,var(--bg) 62%)}
 #bestsellers::before{content:"";position:absolute;top:120px;left:50%;transform:translateX(-50%);width:560px;height:220px;background:radial-gradient(closest-side,rgba(212,197,184,.28),transparent);pointer-events:none}
-#bestsellers .sec-head .eyebrow{color:var(--gold)}
-#bestsellers .sec-head .eyebrow::before,#bestsellers .sec-head .eyebrow::after{content:"✦";font-size:8.5px;vertical-align:2px;margin:0 10px}
-#bestsellers .sec-head h2{font-size:clamp(30px,3.4vw,40px)}
 .bs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative}
-.bs-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 22px 32px;border-radius:30px;background:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,.4));border:1px solid rgba(255,255,255,.95);box-shadow:0 12px 34px rgba(43,43,43,.06);transition:transform .35s var(--ease),box-shadow .35s ease,border-color .35s ease}
-.bs-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-md)}
-.bs-card.featured{background:linear-gradient(180deg,rgba(255,255,255,.97),rgba(243,238,232,.78));border:1px solid rgba(184,166,155,.55);box-shadow:0 18px 46px rgba(184,166,155,.3)}
-.bs-card.featured:hover{box-shadow:0 26px 58px rgba(184,166,155,.42)}
-.bs-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--white);font-size:9px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;padding:8px 18px;border-radius:999px;box-shadow:0 10px 22px rgba(184,166,155,.45);white-space:nowrap;z-index:3}
-.bs-badge i{margin-right:6px;font-size:8px;vertical-align:1px}
+.bs-card{display:flex;flex-direction:column;align-items:center;text-align:center;transition:transform .35s var(--ease)}
+.bs-card:hover{transform:translateY(-8px)}
 .bs-visual{position:relative;width:100%;height:320px;display:grid;grid-template-rows:100%;place-items:center;overflow:hidden}
 .bs-visual::before{content:"";position:absolute;inset:6% 10%;background:radial-gradient(circle at 50% 40%,rgba(214,196,181,.5),transparent 68%);transition:transform .5s var(--ease);border-radius:50%}
 .bs-card:hover .bs-visual::before{transform:scale(1.12)}
@@ -339,7 +332,7 @@ footer{background:var(--charcoal);color:rgba(250,247,242,.7);padding:84px 0 0}
       </div>
 
       <div class="hero-media reveal" style="transition-delay:.15s">
-        <img class="hero-img" src="images/hero.jpg" alt="Pakistani model with a ZOLIVI skincare product" decoding="async" fetchpriority="high" width="1280" height="1920" />
+        <img class="hero-img" src="images/hero.jpg" alt="Woman holding a ZOLIVI serum bottle" decoding="async" fetchpriority="high" width="1200" height="1800" />
         <a class="hero-float" href="product.html?id=radiance-elixir" aria-label="Radiance Elixir — Bestseller">
           <img src="https://i.ibb.co/ch1CwsrF/Whats-App-Image-2026-08-01-at-2-29-20-jj.jpg" alt="Radiance Elixir serum bottle" decoding="async" />
           <span>
@@ -363,8 +356,7 @@ footer{background:var(--charcoal);color:rgba(250,247,242,.7);padding:84px 0 0}
 
       <div class="bs-grid">
 
-        <article class="bs-card featured reveal" style="transition-delay:.05s">
-          <span class="bs-badge"><i class="fa-solid fa-star"></i>Bestseller</span>
+        <article class="bs-card reveal" style="transition-delay:.05s">
           <a class="bs-visual" href="product.html?id=radiance-elixir" aria-label="View Radiance Elixir details">
             <img src="https://i.ibb.co/ch1CwsrF/Whats-App-Image-2026-08-01-at-2-29-20-jj.jpg" alt="Radiance Elixir Vitamin C Serum" decoding="async" fetchpriority="high" />
           </a>
